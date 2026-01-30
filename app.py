@@ -12,7 +12,8 @@ from functools import wraps
 
 
 app = Flask(__name__)
-app.secret_key = 'sb_secret_-Z49MFbzUmQxBvDLb7Q2dw_c0AHvNuO'
+import os
+app.secret_key = os.environ.get('FLASK_SECRET_KEY', 'dev_default_secret')
 
 logging.basicConfig(level=logging.INFO)
 
