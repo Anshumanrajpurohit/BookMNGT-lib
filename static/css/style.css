@@ -1,0 +1,101 @@
+
+
+body {
+	background: linear-gradient(135deg, #e3eaf2 0%, #f7fafd 100%);
+	font-family: 'Segoe UI', 'Roboto', Arial, sans-serif;
+	min-height: 100vh;
+}
+
+.container {
+	background: #fff;
+	border-radius: 18px;
+	box-shadow: 0 8px 32px rgba(44,62,80,0.18), 0 1.5px 8px rgba(44,62,80,0.08);
+	padding: 32px 28px;
+	margin-top: 32px;
+	margin-bottom: 32px;
+}
+
+.navbar {
+	background: linear-gradient(90deg, #355a7c 0%, #4e7ca1 100%) !important;
+	border-bottom: 3px solid #f7c873;
+	box-shadow: 0 4px 16px rgba(44,62,80,0.12);
+}
+.navbar-brand {
+	font-size: 2.2rem;
+	color: #f7c873 !important;
+	letter-spacing: 2px;
+	font-family: 'Georgia', serif;
+}
+
+.table th {
+	background: #4e7ca1;
+	color: #fff;
+	font-weight: 600;
+	border: none;
+}
+.table-striped > tbody > tr:nth-of-type(odd) {
+	background-color: #f4f7fa;
+}
+.table-striped > tbody > tr:nth-of-type(even) {
+	background-color: #fff;
+}
+.table td, .table th {
+	border: none;
+	padding: 14px 10px;
+}
+
+.btn-primary {
+	background: linear-gradient(90deg, #4e7ca1 0%, #355a7c 100%);
+	border: none;
+	box-shadow: 0 2px 8px rgba(44,62,80,0.10);
+	font-weight: 500;
+}
+.btn-primary:hover {
+	background: linear-gradient(90deg, #355a7c 0%, #4e7ca1 100%);
+	box-shadow: 0 4px 16px rgba(44,62,80,0.18);
+}
+.btn-success, .btn-danger {
+	font-weight: 500;
+	box-shadow: 0 2px 8px rgba(44,62,80,0.10);
+}
+.btn-success:hover, .btn-danger:hover {
+	box-shadow: 0 4px 16px rgba(44,62,80,0.18);
+}
+
+.card {
+	box-shadow: 0 8px 32px rgba(44,62,80,0.18), 0 1.5px 8px rgba(44,62,80,0.08);
+	border-radius: 12px;
+	border: 1px solid #e3eaf2;
+	background: #fff;
+}
+
+.form-control {
+	border-radius: 8px;
+	border: 1.5px solid #e3eaf2;
+	font-size: 1.05rem;
+}
+.form-control:focus {
+	border-color: #4e7ca1;
+	box-shadow: 0 0 0 0.2rem rgba(78,124,161,.15);
+}
+
+.alert {
+	border-radius: 8px;
+	font-size: 1.05rem;
+	box-shadow: 0 2px 8px rgba(44,62,80,0.08);
+}
+
+h2, h3, h4 {
+	color: #355a7c;
+	font-family: 'Georgia', serif;
+	font-weight: 700;
+	letter-spacing: 1px;
+}
+
+/* Admin panel highlight */
+.admin-panel {
+	background: linear-gradient(90deg, #f7c873 0%, #e3eaf2 100%);
+	border-radius: 18px;
+	box-shadow: 0 8px 32px rgba(44,62,80,0.18);
+	padding: 32px 28px;
+}

@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>{{ book.title }}</h2>
+<p><b>Author:</b> {{ book.author }}</p>
+<p><b>Category:</b> {{ book.category }}</p>
+<p><b>Price:</b> ${{ book.price }}</p>
+<p><b>Stock:</b> {{ book.stock }}</p>
+{% if book.stock > 0 %}
+  <a href="/add_to_cart/{{ book.id }}" class="btn btn-success">Add to Cart</a>
+{% else %}
+  <span class="badge bg-danger">Out of Stock</span>
+{% endif %}
+<a href="/" class="btn btn-secondary">Back to Home</a>
+{% endblock %}

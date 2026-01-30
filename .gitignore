@@ -1,0 +1,45 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.env
+.env*
+*.sqlite3
+*.db
+
+# VS Code
+.vscode/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Secrets and credentials
+*.secret
+*.key
+*.pem
+*.crt
+*.cfg
+*.conf
+*.json
+*.yml
+*.yaml
+*.ini
+*.log
+
+# Database dumps
+*.sql
+
+# Project-specific
+# Exclude config files with credentials
+*db_config.py
+
+# Node/npm
+node_modules/
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Git
+.git/

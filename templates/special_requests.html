@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container mt-4">
+  <h2>Special Demand Requests</h2>
+  {% if requests %}
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>User</th>
+        <th>Title</th>
+        <th>Author</th>
+        <th>Details</th>
+        <th>Status</th>
+        <th>Requested At</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for req in requests %}
+      <tr>
+        <td>{{ req.user_name }}</td>
+        <td>{{ req.title }}</td>
+        <td>{{ req.author }}</td>
+        <td>{{ req.details }}</td>
+        <td>{{ req.status }}</td>
+        <td>{{ req.requested_at }}</td>
+        <td>
+          {% if req.status == 'pending' %}
+          <form method="post" action="/special-requests/{{ req.id }}/approve" style="display:inline-block">
+            <button class="btn btn-success btn-sm">Approve</button>
+          </form>
+          <form method="post" action="/special-requests/{{ req.id }}/decline" style="display:inline-block">
+            <button class="btn btn-danger btn-sm">Decline</button>
+          </form>
+          {% else %}
+          <span class="text-muted">No action</span>
+          {% endif %}
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  {% else %}
+  <p>No special requests yet.</p>
+  {% endif %}
+</div>
+{% endblock %}

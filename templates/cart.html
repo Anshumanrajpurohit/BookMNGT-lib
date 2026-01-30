@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>Your Cart</h2>
+{% if books %}
+<table class="table">
+  <thead><tr><th>Title</th><th>Author</th><th>Price</th><th>Quantity</th><th>Subtotal</th></tr></thead>
+  <tbody>
+    {% for book in books %}
+    <tr>
+      <td>{{ book.title }}</td>
+      <td>{{ book.author }}</td>
+      <td>${{ book.price }}</td>
+      <td>{{ book.quantity }}</td>
+      <td>${{ book.subtotal }}</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+<p><b>Total: ${{ total }}</b></p>
+<form method="post" action="/place_order">
+  <div class="mb-3"><input type="text" name="name" class="form-control" placeholder="Your Name" required></div>
+  <div class="mb-3"><input type="email" name="email" class="form-control" placeholder="Your Email" required></div>
+  <button type="submit" class="btn btn-primary">Place Order</button>
+</form>
+{% else %}
+<p>Your cart is empty.</p>
+{% endif %}
+<a href="/" class="btn btn-secondary mt-3">Continue Shopping</a>
+{% endblock %}
