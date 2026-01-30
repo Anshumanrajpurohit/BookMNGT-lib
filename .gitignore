@@ -33,7 +33,6 @@ Thumbs.db
 
 # Project-specific
 # Exclude config files with credentials
-*db_config.py
 
 # Node/npm
 node_modules/
