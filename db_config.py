@@ -1,9 +1,9 @@
 # db_config.py
-# PostgreSQL (Supabase) connection using psycopg2
+# MySQL connection using PyMySQL
 
 
-import psycopg2
-import psycopg2.extras
+import pymysql
+from pymysql.cursors import DictCursor
 import logging
 import os
 from dotenv import load_dotenv
@@ -12,23 +12,24 @@ from dotenv import load_dotenv
 load_dotenv()
 
 DB_CONFIG = {
-    'host': os.environ.get('DB_HOST'),
-    'port': int(os.environ.get('DB_PORT')),
-    'database': os.environ.get('DB_NAME'),
-    'user': os.environ.get('DB_USER'),
-    'password': os.environ.get('DB_PASSWORD'),
+    'host': os.environ.get('DB_HOST', '127.0.0.1'),
+    'port': int(os.environ.get('DB_PORT', '3306')),
+    'database': os.environ.get('DB_NAME', 'online_book_store'),
+    'user': os.environ.get('DB_USER', 'root'),
+    'password': os.environ.get('DB_PASSWORD', ''),
 }
 
 def get_db_connection():
     try:
-        return psycopg2.connect(
+        return pymysql.connect(
             host=DB_CONFIG['host'],
             port=DB_CONFIG['port'],
-            dbname=DB_CONFIG['database'],
-            sslmode='require',
+            db=DB_CONFIG['database'],
             user=DB_CONFIG['user'],
             password=DB_CONFIG['password'],
-            cursor_factory=psycopg2.extras.DictCursor
+            cursorclass=DictCursor,
+            charset='utf8mb4',
+            autocommit=False
         )
     except Exception as e:
         logging.error(f"Database connection failed: {e}")

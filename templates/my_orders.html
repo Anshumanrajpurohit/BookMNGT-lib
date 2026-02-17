@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>My Orders</h2>
+{% if orders %}
+<div class="table-responsive">
+  <table class="table table-striped align-middle">
+    <thead>
+      <tr>
+        <th>Order ID</th>
+        <th>Books</th>
+        <th>Total Amount ($)</th>
+        <th>Status</th>
+        <th>Date</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for order in orders %}
+      <tr>
+        <td>{{ order.id }}</td>
+        <td>{{ order.books or 'N/A' }}</td>
+        <td>{{ '%.2f'|format(order.total) }}</td>
+        <td>
+          {% if order.status == 'Approved' %}
+            <span class="badge bg-success">Approved</span>
+          {% elif order.status == 'Rejected' %}
+            <span class="badge bg-danger">Rejected</span>
+          {% else %}
+            <span class="badge bg-warning text-dark">Pending</span>
+          {% endif %}
+        </td>
+        <td>{{ order.order_date }}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% else %}
+  <p>You have not placed any orders yet.</p>
+{% endif %}
+<a href="/" class="btn btn-outline-secondary mt-3">Continue Browsing</a>
+{% endblock %}

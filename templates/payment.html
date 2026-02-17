@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="payment-wrapper">
+  <a href="{{ url_for('cart') }}" class="back-link">&#8592; Back to Cart</a>
+  <div class="scanner-card">
+    <div class="scanner-qr">
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+    <div class="scanner-beam"></div>
+  </div>
+  <p class="payment-message">As the payment is successful, the books can be rented.</p>
+  <div class="text-muted">Amount Due: ${{ '%.2f'|format(total) }}</div>
+  <form method="post" action="{{ url_for('place_order') }}">
+    <button type="submit" class="btn btn-primary mt-3">Mark as Paid &amp; Rent Books</button>
+  </form>
+</div>
+{% endblock %}

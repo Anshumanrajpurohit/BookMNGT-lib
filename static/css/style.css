@@ -99,3 +99,68 @@ h2, h3, h4 {
 	box-shadow: 0 8px 32px rgba(44,62,80,0.18);
 	padding: 32px 28px;
 }
+
+.payment-wrapper {
+	min-height: 60vh;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	gap: 18px;
+}
+
+.back-link {
+	align-self: flex-start;
+	text-decoration: none;
+	font-weight: 600;
+	color: #355a7c;
+}
+
+.scanner-card {
+	position: relative;
+	width: 240px;
+	height: 240px;
+	border-radius: 22px;
+	border: 3px dashed #4e7ca1;
+	background: #f7fafd;
+	box-shadow: 0 12px 40px rgba(44,62,80,0.18);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.scanner-qr {
+	display: grid;
+	grid-template-columns: repeat(2, 1fr);
+	grid-gap: 12px;
+	width: 120px;
+	height: 120px;
+}
+
+.scanner-qr span {
+	display: block;
+	border-radius: 12px;
+	background: linear-gradient(135deg, #4e7ca1, #355a7c);
+	box-shadow: inset 0 0 10px rgba(0,0,0,0.2);
+}
+
+.scanner-beam {
+	position: absolute;
+	width: 90%;
+	height: 4px;
+	background: rgba(247,200,115,0.85);
+	animation: scan 2s linear infinite;
+	border-radius: 999px;
+}
+
+@keyframes scan {
+	0% { top: 20%; }
+	50% { top: 80%; }
+	100% { top: 20%; }
+}
+
+.payment-message {
+	color: #c53030;
+	font-weight: 600;
+	font-size: 1.1rem;
+}

@@ -1,29 +1,47 @@
 {% extends 'base.html' %}
 {% block content %}
-<h2>Your Cart</h2>
-{% if books %}
-<table class="table">
-  <thead><tr><th>Title</th><th>Author</th><th>Price</th><th>Quantity</th><th>Subtotal</th></tr></thead>
-  <tbody>
-    {% for book in books %}
-    <tr>
-      <td>{{ book.title }}</td>
-      <td>{{ book.author }}</td>
-      <td>${{ book.price }}</td>
-      <td>{{ book.quantity }}</td>
-      <td>${{ book.subtotal }}</td>
-    </tr>
-    {% endfor %}
-  </tbody>
-</table>
-<p><b>Total: ${{ total }}</b></p>
-<form method="post" action="/place_order">
-  <div class="mb-3"><input type="text" name="name" class="form-control" placeholder="Your Name" required></div>
-  <div class="mb-3"><input type="email" name="email" class="form-control" placeholder="Your Email" required></div>
-  <button type="submit" class="btn btn-primary">Place Order</button>
-</form>
+<div class="d-flex justify-content-between align-items-center mb-3">
+  <h2>Your Cart</h2>
+  <span class="badge bg-primary">Authenticated User Only</span>
+</div>
+{% if cart_items %}
+<div class="table-responsive">
+  <table class="table table-striped align-middle">
+    <thead>
+      <tr>
+        <th>Book</th>
+        <th class="text-center">Quantity</th>
+        <th class="text-end">Rate ($)</th>
+        <th class="text-end">Subtotal ($)</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for item in cart_items %}
+      <tr>
+        <td>{{ item.title }}</td>
+        <td class="text-center">{{ item.quantity }}</td>
+        <td class="text-end">{{ '%.2f'|format(item.rate) }}</td>
+        <td class="text-end">{{ '%.2f'|format(item.subtotal) }}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+    <tfoot>
+      <tr>
+        <th colspan="3" class="text-end">Total</th>
+        <th class="text-end">${{ '%.2f'|format(total) }}</th>
+      </tr>
+    </tfoot>
+  </table>
+</div>
+<div class="d-flex flex-wrap gap-3 mt-3">
+  <a href="{{ url_for('payment') }}" target="_blank" class="btn btn-success">Buy</a>
+  <form method="post" action="{{ url_for('place_order') }}">
+    <button type="submit" class="btn btn-primary">Complete Rental</button>
+  </form>
+  <a href="/" class="btn btn-outline-secondary">Continue Shopping</a>
+</div>
 {% else %}
-<p>Your cart is empty.</p>
+  <p>Your cart is empty.</p>
+  <a href="/" class="btn btn-primary mt-3">Browse Books</a>
 {% endif %}
-<a href="/" class="btn btn-secondary mt-3">Continue Shopping</a>
 {% endblock %}

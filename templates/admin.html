@@ -36,17 +36,46 @@
     {% endfor %}
   </tbody>
 </table>
-<h4>Orders</h4>
-<table class="table table-bordered">
-  <thead><tr><th>Order ID</th><th>User</th><th>Date</th></tr></thead>
-  <tbody>
-    {% for order in orders %}
-    <tr>
-      <td>{{ order.id }}</td>
-      <td>{{ order.name }}</td>
-      <td>{{ order.order_date }}</td>
-    </tr>
-    {% endfor %}
-  </tbody>
-</table>
+<h4 class="mt-5">Orders</h4>
+<div class="table-responsive">
+  <table class="table table-bordered align-middle">
+    <thead>
+      <tr>
+        <th>Order ID</th>
+        <th>User</th>
+        <th>Books</th>
+        <th>Total Amount</th>
+        <th>Status</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for order in orders %}
+      <tr>
+        <td>{{ order.id }}</td>
+        <td>{{ order.name }}</td>
+        <td>{{ order.books or 'N/A' }}</td>
+        <td>${{ '%.2f'|format(order.total) }}</td>
+        <td>
+          {% if order.status == 'Approved' %}
+            <span class="badge bg-success">Approved</span>
+          {% elif order.status == 'Rejected' %}
+            <span class="badge bg-danger">Rejected</span>
+          {% else %}
+            <span class="badge bg-warning text-dark">Pending</span>
+          {% endif %}
+        </td>
+        <td>
+          <form method="post" action="/admin/orders/{{ order.id }}/approve" class="d-inline">
+            <button class="btn btn-success btn-sm" {% if order.status != 'Pending' %}disabled{% endif %}>Approve</button>
+          </form>
+          <form method="post" action="/admin/orders/{{ order.id }}/reject" class="d-inline">
+            <button class="btn btn-danger btn-sm" {% if order.status != 'Pending' %}disabled{% endif %}>Reject</button>
+          </form>
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
 {% endblock %}
